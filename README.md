@@ -59,34 +59,32 @@ And the pack '' psutill '' with '' pip ''
 pip3 install psutil
 ```
 
-</ file>
 Create the file '' blacklist-nouveau.conf ''
 
-<file bash>
+```
 sudo touch /etc/modprobe.d/blacklist-nouveau.conf
-</ file>
+```
 
 Enter the following lines
 
-<file bash>
+```
 nouveau blacklist
 blacklist lbm-nouveau
 options nouveau modeset = 0
 alias nouveau off
 alias lbm-nouveau off
-</ file>
-
+```
 Create the file '' nouveau-kms.conf ''
 
-<file bash>
+```
 sudo touch /etc/modprobe.d/nouveau-kms.conf
-</ file>
-
+```
+Enter the following line
 Enter the following line
 
-<file bash>
+```
 options nouveau modeset = 0
-</ file>
+
 
 And then upgrade
 
