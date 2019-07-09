@@ -43,22 +43,23 @@ At this point we will do the initial configuration.
 
 Update apt
 
-<file bash>
+```
 sudo apt-get update -yq
-</ file>
+```
 
 Install the packages
 
-<file bash>
+```
 sudo apt-get install -yq build-essential linux-headers - $ (uname -r) unzip p7zip-full linux-image-extra-virtual python3-pip
-</ file>
+```
 
 And the pack '' psutill '' with '' pip ''
 
-<file bash>
+```
 pip3 install psutil
-</ file>
+```
 
+</ file>
 Create the file '' blacklist-nouveau.conf ''
 
 <file bash>
