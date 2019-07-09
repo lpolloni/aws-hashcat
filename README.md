@@ -22,9 +22,9 @@ p3.16xlarge | 16 | 192 | 64 | 732 | $ 24.48
 
 To perform this process you must have the following requirements:
 
-  * Knowledge of Linux
-  * Account with AWS
-  Be willing to spend
+* Knowledge of Linux
+* Account with AWS
+* Be willing to spend
 
 
 ===== Configuration =====
