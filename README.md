@@ -6,7 +6,7 @@ A AWS &amp; Hashcat environment for WPA2 Brute force attack
 
 One big question when it comes to breaking passwords by brute force is: How long will it take?
 
-While the password  **112233** would only take 1 second to be discovered through trial and error, consisting of several combinations, a password like**fDb#E!*## 12c** would take 4 centuries, according to [Kaspersky Calculator](https : //password.kaspersky.com/? / utm_medium = rdr & utm_source = redirector & utm_campaign = old_url). The problem is that it is not enough to have a "Gamer" computer, it will not be enough if the password is a bit more complex, we often have even modest computers.
+While the password  **112233** would only take 1 second to be discovered through trial and error, consisting of several combinations, a password like **fDb#E!*##12c** would take 4 centuries, according to [Kaspersky Calculator](https://password.kaspersky.com/?/utm_medium=rdr&utm_source=redirector&utm_campaign=old_url). The problem is that it is not enough to have a "Gamer" computer, it will not be enough if the password is a bit more complex, we often have even modest computers.
 
 An alternative is to use ** AWS ** to accomplish this task, there are ** very powerful ** EC2 ** instances in which we can enjoy paying for hours of use.
 
