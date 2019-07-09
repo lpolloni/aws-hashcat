@@ -50,7 +50,7 @@ sudo apt-get update -yq
 Install the packages
 
 ```
-sudo apt-get install -yq build-essential linux-headers -$(uname -r)unzip p7zip-full linux-image-extra-virtual python3-pip
+sudo apt-get install -yq build-essential linux-headers -$(uname -r) nzip p7zip-full linux-image-extra-virtual python3-pip
 ```
 
 And the pack **psutill** with **pip**
