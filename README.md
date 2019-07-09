@@ -33,7 +33,7 @@ With the pre requisites fulfilled hands down.
 ### Uploading Instance
 
 1. Select the AMI Ubuntu Server 16.04 LTS (HVM), SDD Volume type
-1. Choose the type, in this example I'll use '' p3.8xlarge ''
+1. Choose the type, in this example I'll use **p3.8xlarge**
 1. Configure the details, storage, security group, key pair, etc.
 1. After creating the instance make the connection via SSH
 
@@ -53,13 +53,13 @@ Install the packages
 sudo apt-get install -yq build-essential linux-headers - $ (uname -r) unzip p7zip-full linux-image-extra-virtual python3-pip
 ```
 
-And the pack '' psutill '' with '' pip ''
+And the pack **psutill** with **pip**
 
 ```
 pip3 install psutil
 ```
 
-Create the file '' blacklist-nouveau.conf ''
+Create the file **blacklist-nouveau.conf**
 
 ```
 sudo touch /etc/modprobe.d/blacklist-nouveau.conf
@@ -74,51 +74,50 @@ options nouveau modeset = 0
 alias nouveau off
 alias lbm-nouveau off
 ```
-Create the file '' nouveau-kms.conf ''
+Create the file **nouveau-kms.conf**
 
 ```
 sudo touch /etc/modprobe.d/nouveau-kms.conf
 ```
 Enter the following line
-Enter the following line
 
 ```
 options nouveau modeset = 0
-
+```
 
 And then upgrade
 
-<file bash>
+```
 sudo update-initramfs -u
-</ file>
+```
 
 Download NVIDIA
 
-<file bash>
+```
 cd / tmp
 wget http://us.download.nvidia.com/tesla/410.104/NVIDIA-Linux-x86_64-410.104.run
-</ file>
+```
 
 Do the installation
 
-<file bash>
+```
 sudo / bin / bash NVIDIA-Linux-x86_64-410.104.run --ui = none --no-questions --silent -X
-</ file>
+```
 
 Download HashCat
 
-<file bash>
+```
 git clone https://github.com/hashcat/hashcat.git
-</ file>
+```
 
 And then do the installation
 
-<file bash>
+```
 sudo make
 sudo make install
-</ file>
+```
 
-At this point you can put your '.hccapx' files on the server, if you have captured the handshake through '' Aircrack-ng '' you can convert the file '' .cap '' to '' .hccapx '' without much trouble, a very simple alternative is to use a tool called [[https://hashcat.net/cap2hccap/|cap2hccap]] from HashCat itself.
+At this point you can put your **.hccapx** files on the server, if you have captured the handshake through **Aircrack-ng** you can convert the file **.cap** to **.hccapx** without much trouble, a very simple alternative is to use a tool called [cap2hccap](https://hashcat.net/cap2hccap/) from HashCat itself.
 
-Now just launch the command and wait for the password to be discovered, for more information on usage consult HashCat [[https://hashcat.net/wiki/|Documentation]].
+Now just launch the command and wait for the password to be discovered, for more information on usage consult HashCat [Documentation](https://hashcat.net/wiki/).
 
