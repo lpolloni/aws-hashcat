@@ -50,7 +50,7 @@ sudo apt-get update -yq
 Install the packages
 
 ```
-sudo apt-get install -yq build-essential linux-headers - $ (uname -r) unzip p7zip-full linux-image-extra-virtual python3-pip
+sudo apt-get install -yq build-essential linux-headers -$(uname -r)unzip p7zip-full linux-image-extra-virtual python3-pip
 ```
 
 And the pack **psutill** with **pip**
@@ -94,14 +94,14 @@ sudo update-initramfs -u
 Download NVIDIA
 
 ```
-cd / tmp
+cd /tmp
 wget http://us.download.nvidia.com/tesla/410.104/NVIDIA-Linux-x86_64-410.104.run
 ```
 
 Do the installation
 
 ```
-sudo / bin / bash NVIDIA-Linux-x86_64-410.104.run --ui = none --no-questions --silent -X
+sudo /bin/bash NVIDIA-Linux-x86_64-410.104.run --ui = none --no-questions --silent -X
 ```
 
 Download HashCat
