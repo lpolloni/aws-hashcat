@@ -13,6 +13,7 @@ An alternative is to use **AWS** to accomplish this task, there are very powerfu
 We can use instances of type P3 for example, which contains the following configuration:
 
 Name | GPUs | GPU Mem | vCPU | Mem (GiB) | Cost/hour 
+-----|------|---------|------|-----------|----------
 p3.2xlarge | 1 | 12 | 4 | 61 | $ 3.06 
 p3.8xlarge | 8 | 96 | 32 | 488 | $ 12.24
 p3.16xlarge | 16 | 192 | 64 | 732 | $ 24.48
