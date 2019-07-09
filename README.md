@@ -18,7 +18,7 @@ p3.2xlarge | 1 | 12 | 4 | 61 | $ 3.06
 p3.8xlarge | 8 | 96 | 32 | 488 | $ 12.24
 p3.16xlarge | 16 | 192 | 64 | 732 | $ 24.48
 
-===== Prerequisites =====
+## Prerequisites
 
 To perform this process you must have the following requirements:
 
@@ -26,21 +26,20 @@ To perform this process you must have the following requirements:
 * Account with AWS
 * Be willing to spend
 
-
-===== Configuration =====
+## Configuration
 
 With the pre requisites fulfilled hands down.
 
-==== Uploading Instance ====
+### Uploading Instance
 
-  - Select the AMI Ubuntu Server 16.04 LTS (HVM), SDD Volume type
-  - Choose the type, in this example I'll use '' p3.8xlarge ''
-  - Configure the details, storage, security group, key pair, etc.
-  - After creating the instance make the connection via SSH
+1. Select the AMI Ubuntu Server 16.04 LTS (HVM), SDD Volume type
+1. Choose the type, in this example I'll use '' p3.8xlarge ''
+1. Configure the details, storage, security group, key pair, etc.
+1. After creating the instance make the connection via SSH
 
 At this point we will do the initial configuration.
 
-==== Configuration ====
+### Configuration
 
 Update apt
 
