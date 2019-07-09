@@ -8,14 +8,14 @@ One big question when it comes to breaking passwords by brute force is: How long
 
 While the password  **112233** would only take 1 second to be discovered through trial and error, consisting of several combinations, a password like **fDb#E!*##12c** would take 4 centuries, according to [Kaspersky Calculator](https://password.kaspersky.com/?/utm_medium=rdr&utm_source=redirector&utm_campaign=old_url). The problem is that it is not enough to have a "Gamer" computer, it will not be enough if the password is a bit more complex, we often have even modest computers.
 
-An alternative is to use ** AWS ** to accomplish this task, there are ** very powerful ** EC2 ** instances in which we can enjoy paying for hours of use.
+An alternative is to use **AWS** to accomplish this task, there are very powerful **EC2** instances in which we can enjoy paying for hours of use.
 
 We can use instances of type P3 for example, which contains the following configuration:
 
-^ Name ^ GPUs ^ GPU Mem ^ vCPU ^ Mem (GiB) ^ Cost / hour ^
-| p3.2xlarge | 1 | 12 | 4 | 61 | $ 3.06 |
-| p3.8xlarge | 8 | 96 | 32 | 488 | $ 12.24 |
-| p3.16xlarge | 16 | 192 | 64 | 732 | $ 24.48 |
+Name | GPUs | GPU Mem | vCPU | Mem (GiB) | Cost/hour 
+p3.2xlarge | 1 | 12 | 4 | 61 | $ 3.06 
+p3.8xlarge | 8 | 96 | 32 | 488 | $ 12.24
+p3.16xlarge | 16 | 192 | 64 | 732 | $ 24.48
 
 ===== Prerequisites =====
 
