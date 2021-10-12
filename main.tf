@@ -14,5 +14,4 @@ module "create-compute" {
   vpc-id = module.create-networking.o-vpc-id
   sgroup-id = [module.create-networking.o-sgroup-id]
   subnet-id = module.create-networking.o-subnet-id
-  #instance-id = module.create-compute.o-instance-id
 }
