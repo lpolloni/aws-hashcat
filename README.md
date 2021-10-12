@@ -126,7 +126,7 @@ At this point you can put your **.hc22000** files on the server, if you have cap
 
 Now just launch the command and wait for the password to be discovered, for more information on usage consult HashCat [Documentation](https://hashcat.net/wiki/).
 
-## Using Aircrack-ng to get the Handshake
+## Using Aircrack-ng to get handshake
 
 Install aircrack-ng
 ```
