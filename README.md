@@ -165,7 +165,7 @@ Little explanation
 -c: client MAC address
 ```
 
-You will see in the top right corner when the handshake is captured, then stop the capture and convert using **cap2hashcat** tool.
+You will see in the top right corner when the handshake is captured, then stop the capture and convert the file using **cap2hashcat** tool.
 
 ## Terraform project
 
