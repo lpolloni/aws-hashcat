@@ -126,7 +126,7 @@ At this point you can put your **.hc22000** files on the server, if you have cap
 
 Now just launch the command and wait for the password to be discovered, for more information on usage consult HashCat [Documentation](https://hashcat.net/wiki/).
 
-**Getting the Handshake using Aircrack-ng**
+## Getting the Handshake using Aircrack-ng
 
 Install aircrack-ng
 ```
@@ -167,7 +167,7 @@ Little explanation
 
 You will see in the top right corner when the handshake is captured, then stop the capture and convert using **cap2hashcat** tool.
 
-**Terraform project**
+## Terraform project
 
 You must have the following packages
 ```
@@ -193,7 +193,7 @@ terraform apply
 
 At this point all the environment and spot instance machine will be created, and will be automatically launched the **initial-script.sh** located in scripts folder, once finished reboot the server and run **hashcat.sh** to install nvidia drivers and hashcat.
 
-**How to use Hashcat**
+## How to use Hashcat
 
 There is some example bellow, you can consult the oficial documentation as well
 
