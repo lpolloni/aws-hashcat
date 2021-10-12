@@ -195,7 +195,7 @@ At this point all the environment and spot instance machine will be created, and
 
 ## How to use Hashcat
 
-There is some example bellow, you can consult the oficial documentation as well
+There is some example bellow, you can consult the official documentation as well
 
 Send the file to the server
 ```
