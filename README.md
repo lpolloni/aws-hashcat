@@ -193,6 +193,7 @@ terraform apply
 
 At this point all the environment and spot instance machine will be created, and the **initial-script.sh** located in scripts folder will be automatically launched, once finished reboot the server and run **hashcat.sh** to install nvidia drivers and hashcat.
 ```
+reboot
 /home/admin/hashcat.sh
 ```
 
