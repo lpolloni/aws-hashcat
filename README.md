@@ -96,14 +96,17 @@ And then upgrade initramfs
 sudo update-initramfs -u
 ```
 
-At this point reboot your server to continue.
+At this point reboot your server to continue
+```
+reboot
+```
 
 Install linux headers
 ```
 sudo apt install -y linux-headers-`uname -r`
 ```
 
-Download NVIDIA and install
+Download NVIDIA drivers and install
 
 ```
 cd /tmp/
@@ -170,10 +173,10 @@ You will see in the top right corner when the handshake is captured, then stop t
 ## Terraform project
 
 You must have the following packages
-```
-aws-cli
-terraform
-```
+
+* aws-cli
+* terraform
+
 
 Configure the aws credentials
 ```
