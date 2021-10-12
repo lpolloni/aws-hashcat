@@ -126,7 +126,7 @@ At this point you can put your **.hc22000** files on the server, if you have cap
 
 Now just launch the command and wait for the password to be discovered, for more information on usage consult HashCat [Documentation](https://hashcat.net/wiki/).
 
-## Getting the Handshake using Aircrack-ng
+## Using Aircrack-ng to get the Handshake
 
 Install aircrack-ng
 ```
@@ -199,7 +199,7 @@ There is some example bellow, you can consult the official documentation as well
 
 Send the file to the server
 ```
-scp -i aws-hcat-prod.pem wificapfile.hc22000 admin@<ip address>:/home/admin/
+scp -i aws-hcat-prod.pem wificapfile.hc22000 admin@<IP ADDRESS>:/home/admin/
 ```
 
 Hashcat brute force examples
