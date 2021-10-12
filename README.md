@@ -213,5 +213,5 @@ scp -i aws-hcat-prod.pem wificapfile.hc22000 admin@<IP ADDRESS>:/home/admin/
 Hashcat brute force examples
 ```
 hashcat -m 22000 wificapfile.hc22000 -a 3 ?d?d?d?d?d?d?d?d
-hashcat wificapfile.hc22000 -m 22000 -a 3 ?H?H?H?HAA10
+hashcat wificapfile.hc22000 -m 22000 -a 3 ?H?H?H?HHELLOWORLD
 ```
