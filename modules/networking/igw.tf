@@ -1,9 +1,8 @@
-resource "aws_internet_gateway" "resource_igw" {
-  count   = "${var.create ? length(var.auto_vpc_rules[var.vpc_env]) : 0}"
+resource "aws_internet_gateway" "resource-igw" {
+  
+  vpc_id = var.vpc-id
 
-  vpc_id  = "${element(var.vpc_id, count.index)}"
-
-  tags {
-    Name  = "igw-${var.vpc_env}-${element(var.auto_vpc_rules[var.vpc_env], count.index)}"
-  } 
+  tags = {
+      Name = "igw-${var.name}-${var.environment}"
+  }
 }

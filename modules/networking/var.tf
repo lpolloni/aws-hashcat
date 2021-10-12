@@ -1,27 +1,37 @@
-#ids
-variable "vpc_id" { default = [] }
-variable "subnet_id" { default = [] }
-variable "route_id" { default = [] }
-variable "igw_id" { default = [] }
-
-#others
-variable "create" { default = true }
-variable "vpc_env" { }
-
-#maps
-variable "vpc_rules" {
-  type = "map"
-
-  default = {
-    prod    = ["10.20.0.0/16", "10.20.0.0/24", "us-east-1a"]
-    stage   = ["172.20.0.0/16", "172.20.0.0/24", "us-west-1b"]
-  }  
+# main
+variable "name" {
+  default = "aws-hcat"
+}
+variable "environment" {
+  default = "prod"
 }
 
-variable "auto_vpc_rules" {
-  type = "map"
-  
+#ids
+variable "vpc-id" {}
+variable "igw-id" {}
+variable "subnet-id" {}
+
+#maps
+variable "availability-zones" {
   default = {
-    prod     = ["aws-hashcat"]
+    prod = ["us-east-2a", "us-east-2b"]
+    stage = ["us-west-2a", "us-west-2b"]
   }
+}
+variable "cidr-block-vpc" {
+  default = {
+    prod = "10.10.0.0/16"
+    stage = ""
+  }
+}
+variable "cidr-block-subnet" {
+  default = {
+    prod = ["10.10.0.0/24"]
+    stage = [""]
+  }
+}
+
+# other
+variable "create" {
+  default = true
 }

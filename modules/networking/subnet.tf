@@ -1,11 +1,11 @@
-resource "aws_subnet" "resource_subnet" {
-  count   = "${var.create ? length(var.auto_vpc_rules[var.vpc_env]) : 0}"
+resource "aws_subnet" "resource-subnet" {
+  count = var.create ? length(var.cidr-block-subnet[var.environment]) : 0
 
-  vpc_id            = "${element(var.vpc_id, count.index)}" 
-  cidr_block        = "${element(var.vpc_rules[var.vpc_env], 1)}"
-  availability_zone = "${element(var.vpc_rules[var.vpc_env], 2)}"
+  vpc_id = var.vpc-id
+  cidr_block = element(var.cidr-block-subnet[var.environment], count.index)
+  availability_zone = element(var.availability-zones[var.environment], count.index)
 
-  tags {
-    Name  = "subnet-${var.vpc_env}-${element(var.auto_vpc_rules[var.vpc_env], count.index)}"
+  tags = {
+    Name = "subnet-${var.name}-${var.environment}-${count.index}"
   }
 }

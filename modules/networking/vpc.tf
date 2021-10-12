@@ -1,9 +1,8 @@
-resource "aws_vpc" "resource_vpc" {
-  count = "${var.create ? length(var.auto_vpc_rules[var.vpc_env]) : 0}"
+resource "aws_vpc" "resource-vpc" {
 
-  cidr_block  = "${element(var.vpc_rules[var.vpc_env], 0)}"
+  cidr_block = var.cidr-block-vpc[var.environment]
 
-  tags {
-    Name = "vpc-${var.vpc_env}-${element(var.auto_vpc_rules[var.vpc_env], count.index)}"
-  } 
+  tags = {
+    Name = "vpc-${var.name}-${var.environment}"
+  }
 }
